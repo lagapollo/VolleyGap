@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="css/mobile.css" type="text/css">		
+		<script src="js/mobile/cordova-1.7.0rc1.js"></script>
+		<script src="nowjs/now.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript">
+			var isActive=false;
+			var pageActive = false;
+			now.position = "";
+			function testError(){
+
+				console.log("il y a eu une erreur");
+				isActive=false;
+			}
+
+			/* LE SERVEUR */
+			function allerBas(){
+				console.log("on va en bas");				
+				now.direction(1, now.position);
+			}
+
+			function allerHaut(){
+				console.log("on va en haut");
+				now.direction(2, now.position);
+			}
+			now.setPosition = function(pos){
+				now.position = pos;
+			}
+			now.ready(function(){
+				console.log(pageActive);
+				if (pageActive == true){
+					now.setJoueur();
+				}
+			})
+			
+			$(document).ready(function(){
+				$("log").append("document ready <br />");
+				//now.setJoueur();
+				pageActive = true;
+			})
+			/* PHONEGAP */
+			// Wait for phonegap to connect with the device
+			document.addEventListener("deviceready", onDeviceReady, false);
+			document.addEventListener("error", testError, false);
+			var old_x
+			var old_y;
+			function onDeviceReady(){
+				$("log").append("Device ready ! <br />");	
+				old_x=0;
+				old_y = 0;
+				now.setJoueur();
+			}
+			// PhoneGap is ready to be used !
+			//
+			function onAccelerometerSuccess(acceleration){
+				console.log("acceleration en X : " + acceleration.x + " acceleration Y " + acceleration.y + " acceleration Z : " + acceleration.z );
+				console.log("old_x : " + old_x);
+				if (acceleration.y > 2){
+					allerHaut();
+				}
+				if (acceleration.y < -2){
+					allerBas();
+				}
+			}
+			function onAccelerometerError(){
+				alert("onError!");
+			}
+			function activateAccelerometer(){
+				console.log("isActive : " + isActive);
+				var options = { frequency: 200 };  // Update every 3 seconds
+				var watchID = navigator.accelerometer.watchAcceleration(onAccelerometerSuccess, onAccelerometerError, options);
+			}
+		</script>
+	</head>
+	<body>
+
+		<div id="content">
+				<div id="btnGauche" class="btn">
+					<img src="images/Bas.jpg" onclick="allerBas();" width=100px height=100px/>
+				</div>
+				<div id="boutonActivation">
+					<input type="button" value="activer accelerometre" onclick="activateAccelerometer();"/>
+				</div>
+
+
+				<div id="btnDroite" class="btn">
+					<img src="images/Haut.jpg" onclick="allerHaut();" width=100px height=100px/>
+				</div>
+
+		</div>
+		<log style="display:none">
+		</log>
+	</body>
+
+</html>

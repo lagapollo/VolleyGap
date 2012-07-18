@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>Casse brique Canvas by La Ferme du Web</title>
+    <style type='text/css'>
+        body {
+            background: #000;
+        }
+        #conteneur {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #333;
+            margin: 0 auto;
+            background: #FFF;
+            text-align: center;
+            
+        }
+        h1 {
+            text-align: center;
+            font-variant: small-caps;
+            color: #FFF;
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="nowjs/now.js"></script>
+    <script type="text/javascript" src="js/jeu.js">  </script>
+    <script type="text/javascript"> 
+        var pageActive = false;
+        now.position = "";       
+        now.ready(function(){
+                console.log("now.ready, page active : " + pageActive);
+                if (pageActive == true){
+                    now.setJoueur();
+                }
+            })
+            
+            $(document).ready(function(){
+                console.log("document ready <br />");
+                pageActive = true;
+                $("#lancer").click(function(){
+                    charger();
+                })
+            })
+            now.afficherLancer = function(){
+                $("#lancer").fadeIn(1500);
+            }
+    </script>
+</head>
+<body>
+    <h1>Casse brique Canvas</h1>
+    <div id='conteneur'>
+    <canvas id="canvasElem" width="400" height="300">
+        IE Sucks! <br /><a href="http://www.getfirefox.net/">Télécharge Firefox !!</a>
+    </canvas>   
+    <input type="button" id="lancer" style="display:none" value="lancer le jeu"/>
+    </div>
+</body>
+</html>

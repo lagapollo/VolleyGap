@@ -1,0 +1,34 @@
+/* Styles for mobile devices */
+
+
+	body{
+
+		background-color:black;
+	}
+
+
+	.btn{
+		/*opacity:0.5;*/
+
+	}
+
+
+	#btnGauche{
+		float:left;
+		padding: 70px 0px 20px 0px;
+
+	}
+
+	#btnDroite{
+
+		float:right;
+		padding: 40px 0px 20px 0px;
+	}
+
+	#btnActivation{
+
+		float:right;
+		padding:70px 0 0 0 ;
+	}
+
+

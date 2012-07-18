@@ -1,0 +1,19 @@
+#boutons {
+     text-align:center;
+}
+
+#divCanvas {
+    text-align:center;
+    padding-top: 100px;
+}
+
+#body {
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-image: url('../images/background.jpg');
+}
+
+#game_area{
+	background-color:#f5f5f5;
+	border:1px solid #e5e5e5;
+}
