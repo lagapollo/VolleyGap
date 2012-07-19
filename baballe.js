@@ -27,27 +27,23 @@ everyone.now.distributeMessage = function(message){
   everyone.now.receiveMessage(this.now.name, message);
 };
 
-everyone.now.setSalle = function(toto){
-  console.log("Nouvelle salle : " + this);
+everyone.now.setSalle = function(toto){  
 	salleDeJeu = this;
 };
 
 everyone.now.direction = function(dir, joueur){
-  console.log("direction : " + dir + "pour le joueur : " + joueur);
+  
   salleDeJeu.now.changerDirection(dir, joueur);
 };
 
-everyone.now.setJoueur=function(){
-  console.log("SetJOueur: debut");
+everyone.now.setJoueur=function(){  
   if (!joueurGauche){
       joueurGauche = this;
-      //this.now.setPosition("Gauche");
-      console.log("joueur gauche OK : " + joueurGauche);
+      //this.now.setPosition("Gauche");      
   }
   else{
     if (!joueurDroite){
-      joueurDroite = this;
-      //this.now.setPosition("Droite");
+      joueurDroite = this;      
       console.log("joueur Droite ok : " + joueurDroite);
       joueurGauche.now.afficherLancer();
     }
