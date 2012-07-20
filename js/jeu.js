@@ -78,7 +78,7 @@
             
             if ( (balleX + dirBalleX * VITESSE_BALLE) >  ZONE_JEU_WIDTH) dirBalleX = -1;
             else if ( (balleX + dirBalleX * VITESSE_BALLE) <  0) dirBalleX = 1;
-            if ( (balleY + dirBalleY * VITESSE_BALLE) >  ZONE_JEU_HEIGHT) perdu();
+            if ( (balleY + dirBalleY * VITESSE_BALLE) >  ZONE_JEU_HEIGHT) DiminuerScore();
             else {
                 if ( (balleY + dirBalleY * VITESSE_BALLE) <  0){
                     console.log("la balle touche le haut");
@@ -104,14 +104,10 @@
                 signalerEnvoi();
             }
             
-        }
-        else{
-            console.log("la balle est pas la");
         }        
     }
 
-    function signalerEnvoi(){
-        console.log("on envoi la balle a l'autre joueur");
+    function signalerEnvoi(){        
         now.envoiBalle(balleX, balleY);
     }
 
@@ -132,8 +128,7 @@
         context.fill();    
     }
 
-    now.recevoirBalle = function(x,y){
-        console.log("on recoit une balle : " + x + " " + y);
+    now.recevoirBalle = function(x,y){        
         // La balle arrive
         balleX = x;
         balleY = y;
@@ -156,14 +151,20 @@
         }
     }
 
+    function diminuerScore(){
+        score--;
+        vibrer();
+        if (score == 0){
+            perdu();
+        }
+    }
     
     function perdu() {
         clearInterval(boucleJeu);
-        console.log("Perdu !");
+        alert("Vous avez perdu la partie");
     }
     function gagne() {
-        clearInterval(boucleJeu);
-        console.log("Bravo vous avez gagné !");
+        clearInterval(boucleJeu);        
     }
     
     function clearContexte(ctx, startwidth, ctxwidth, startheight, ctxheight) {
