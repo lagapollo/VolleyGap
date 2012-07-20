@@ -121,11 +121,19 @@
             return;
           }
         // Affichage de la balle
-        context.fillStyle = COULEUR_BALLE;
+        
+        var img = new Image();
+        img.onload = function(){
+            can.width = img.width;
+            can.height = img.height;
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+        }
+        img.src = '../images/chromium-logo.png.jpg';
+        /*context.fillStyle = COULEUR_BALLE;
         context.beginPath();
         context.arc(balleX, balleY, DIMENSION_BALLE, 0, Math.PI*2, true);
         context.closePath();
-        context.fill();    
+        context.fill();    */
     }
 
     now.recevoirBalle = function(x,y){        
